@@ -1,3 +1,6 @@
+VIA http://www.reddit.com/r/dailyprogrammer/comments/1ml669/091713_challenge_138_easy_repulsionforce/
+
+Problem:
 Colomb's Law describes the repulsion force for two electrically charged particles. In very general terms, it describes the rate at which particles move away from each-other based on each particle's mass and distance from one another.
 Your goal is to compute the repulsion force for two electrons in 2D space. Assume that the two particles have the same mass and charge. The function that computes force is as follows:
 Force = (Particle 1's mass x Particle 2's mass) / Distance^2
@@ -27,5 +30,7 @@ Sample Input 2
 ===========================
 4 0.04 -0.02
 4 -0.02 -0.03
+============================
 Sample Output 2
+============================
 4324.3279
