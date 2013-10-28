@@ -20,7 +20,7 @@ static float distance(Particle *a, Particle *b)
 int main(int argc, char **argv)
 {
 	Particle _p[2];
-	float distance;
+	float dist, Force;
 	int i;
 
 	for(i = 0; i < 2; i++)
@@ -29,10 +29,10 @@ int main(int argc, char **argv)
 	}
 
 
-	/**
-	printf("particle1 mass: %f particle1 x: %f particle1 y: %f\n", _p[0].mass, _p[0].x, _p[0].y);
-	printf("particle2 mass: %f particle2 x: %f particle2 y: %f\n", _p[1].mass, _p[1].x, _p[1].y);
-	**/
+	dist = distance(&_p[0], &_p[1]);	
+	Force = ((_p[0].mass * _p[1].mass)/(dist * dist));
+
+	printf("%.4f\n", Force);
 
 	return 0;
 }
