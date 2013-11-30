@@ -84,20 +84,24 @@ int main(int argc, char* argv)
 	//printf("%s\n", Output);
 	
 	/** Simple test case for toUSnake() **/
-	toUSnake(Input, i, Output);
+	//toUSnake(Input, i, Output);
 
-	printf("%s\n", Output);
+	//printf("%s\n", Output);
 
-	/**if(format == 0)
+	if(format == 0)
 	{
-		
+		toCamel(Input, i, Output);
 	}
 	else if(format == 1)
 	{
+		toSnake(Input, i, Output);
 	}
 	else if(format == 2)
 	{
-	}**/
+		toUSnake(Input, i, Output);
+	}
+	
+	printf("%s\n", Output);
 
 	return 0;
 }
