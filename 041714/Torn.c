@@ -2,6 +2,7 @@
 
 #define BASE 100
 #define NUMBERCOUNT 1000
+#define BASE_10 10
 
 int main( int argc, char* argv[] )
 {
@@ -33,6 +34,19 @@ int main( int argc, char* argv[] )
 	}
 
 	return 0;
+}
+
+char* Digitize(int digit1, int digit2)
+{
+	char TornNumber[4];
+
+	if(digit1 < BASE_10)
+	{
+		TornNumber[4] = '0';
+		TornNumber[3] = ((char) digit1);
+	}
+
+	return NULL;
 }
 
 int Verify(int digit1, int digit2)
