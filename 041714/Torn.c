@@ -6,7 +6,7 @@
 int main( int argc, char* argv[] )
 {
 	//Variables Initialized
-	int digit1, digit2, total, totalNumber, count;
+	int digit1, digit2, count, totalNumber;
 	int TornNumber[NUMBERCOUNT];
 
 	count = 0;
@@ -17,12 +17,7 @@ int main( int argc, char* argv[] )
 		for(digit2 = 0; digit2 < BASE; digit2++)
 		{
 			totalNumber = (digit1 * BASE) + digit2;
-			
-			int sum;
-			sum = (digit1 + digit2);
-			total = sum * sum;	
 
-			//if(totalNumber == total)
 			if(Verify(digit1, digit2))
 			{
 				TornNumber[count++] = totalNumber;
@@ -42,7 +37,7 @@ int main( int argc, char* argv[] )
 
 int Verify(int digit1, int digit2)
 {
-	int total, totalNumber, count, sum;
+	int total, totalNumber, sum;
 
 	totalNumber = (digit1 * BASE) + digit2;
 
