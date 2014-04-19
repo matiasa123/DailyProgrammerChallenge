@@ -5,10 +5,8 @@
 #define INAROW 3
 
 void PrintGrid(char grid[HEIGHT][WIDTH]);
-int CheckGrid(char grid[HEIGHT][WIDTH], char NextMove);
 int is0(char);
 int isX(char);
-int isBlank(char);
 int CheckRow(int RowNumber, char grid[HEIGHT][WIDTH], char Next);
 int CheckCol(int ColNumber, char grid[HEIGHT][WIDTH], char Next);
 int CheckDiagLR(int ColNumber, char grid[HEIGHT][WIDTH], char Next);
@@ -35,25 +33,34 @@ int main( int argc, char* argv[] )
 		}
 	}
 
+
 	printf("====\n");
 	printf("Next Move: %c\n", NextMove);
 	PrintGrid(grid);	
 
 	printf("====\n");
+	printf("Row Check\n");
+	for(i = 0; i < HEIGHT; i++)
+	{
+		printf("Row %d: %d\n", i, CheckRow(i, grid, NextMove));
+	}
+
+
+	printf("====\n");
+	printf("Column Check\n");
 	for(i = 0; i < WIDTH; i++)
 	{
-		for(j = 0; j < HEIGHT; j++)
-		{
-			if(isBlank(grid[i][j]))
-			{	
-				grid[i][j] = NextMove;
-				if(CheckGrid(grid, NextMove))
-				{
-					PrintGrid(grid);
-				}
-				grid[i][j] = '-';	
-			}	
-		}
+		printf("Column %d: %d\n", i, CheckCol(i, grid, NextMove));
+	}
+	printf("====\n");
+	printf("Diagonal Check\n");
+	for(i = 0; i < WIDTH; i++)
+	{
+		printf("Column %d: %d\n", i, CheckDiagLR(i, grid, NextMove));
+	}
+	for(i = 0; i < WIDTH; i++)
+	{
+		printf("Column %d: %d\n", i, CheckDiagRL(i, grid, NextMove));
 	}
 
 	return 0;
@@ -67,11 +74,6 @@ int is0(char val)
 int isX(char val)
 {
 	return (val == 'x' || val == 'X');
-}
-
-int isBlank(char val)
-{
-	return (val == '-');
 }
 
 int CheckRow(int RowNumber, char grid[HEIGHT][WIDTH], char Next)
@@ -216,36 +218,6 @@ int CheckDiagRL(int ColNumber, char grid[HEIGHT][WIDTH], char Next)
 	{
 		return 0;
 	}
-}
-
-int CheckGrid(char grid[HEIGHT][WIDTH], char NextMove)
-{
-	int i;
-	for(i = 0; i < HEIGHT; i++)
-	{
-		if(CheckRow(i, grid, NextMove))
-			return 1;
-	}
-
-	for(i = 0; i < WIDTH; i++)
-	{
-		if(CheckCol(i, grid, NextMove))
-			return 1;
-	}
-
-	for(i = 0; i < WIDTH; i++)
-	{
-		if(CheckDiagLR(i, grid, NextMove))
-			return 1;
-	}
-
-	for(i = 0; i < WIDTH; i++)
-	{
-		if(CheckDiagRL(i, grid, NextMove))
-			return 1;
-	}
-
-	return 0;
 }
 
 void PrintGrid(char grid[HEIGHT][WIDTH])
