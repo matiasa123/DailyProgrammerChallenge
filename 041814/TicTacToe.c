@@ -9,6 +9,8 @@ int is0(char);
 int isX(char);
 int CheckRow(int RowNumber, char grid[HEIGHT][WIDTH]);
 int CheckCol(int ColNumber, char grid[HEIGHT][WIDTH]);
+int CheckDiagLR(int ColNumber, char grid[HEIGHT][WIDTH]);
+int CheckDiagRL(int ColNumber, char grid[HEIGHT][WIDTH]);
 
 
 int main( int argc, char* argv[] )
@@ -46,6 +48,16 @@ int main( int argc, char* argv[] )
 	for(i = 0; i < WIDTH; i++)
 	{
 		printf("Column %d: %d\n", i, CheckCol(i, grid));
+	}
+	printf("====\n");
+	printf("Diagonal Check\n");
+	for(i = 0; i < WIDTH; i++)
+	{
+		printf("Column %d: %d\n", i, CheckDiagLR(i, grid));
+	}
+	for(i = 0; i < WIDTH; i++)
+	{
+		printf("Column %d: %d\n", i, CheckDiagRL(i, grid));
 	}
 
 	return 0;
@@ -103,6 +115,56 @@ int CheckCol(int ColNumber, char grid[HEIGHT][WIDTH])
 			sum++;
 		}	
 		else if(is0(grid[i][ColNumber]))
+		{
+			sum--;
+		}
+	}
+	
+	return ((sum == INAROW)||((sum*(-1)) == INAROW));	
+}
+
+int CheckDiagLR(int ColNumber, char grid[HEIGHT][WIDTH])
+{
+	int i, j, sum;
+
+	if(ColNumber >= WIDTH || ColNumber < 0)
+	{
+		return 0;
+	}
+
+	sum = 0;
+	for(i = 0; (((ColNumber + i) < HEIGHT) && (i < WIDTH)); i++)
+	{
+		if(isX(grid[i][ColNumber + i]))
+		{
+			sum++;
+		}	
+		else if(is0(grid[i][ColNumber + i]))
+		{
+			sum--;
+		}
+	}
+	
+	return ((sum == INAROW)||((sum*(-1)) == INAROW));	
+}
+
+int CheckDiagRL(int ColNumber, char grid[HEIGHT][WIDTH])
+{
+	int i, j, sum;
+
+	if(ColNumber >= WIDTH || ColNumber < 0)
+	{
+		return 0;
+	}
+
+	sum = 0;
+	for(i = 0; (((ColNumber - i) >= 0) && (i < WIDTH)); i++)
+	{
+		if(isX(grid[i][ColNumber - i]))
+		{
+			sum++;
+		}	
+		else if(is0(grid[i][ColNumber - i]))
 		{
 			sum--;
 		}
