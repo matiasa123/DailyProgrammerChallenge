@@ -18,7 +18,8 @@ int CheckDiagRL(int ColNumber, char grid[HEIGHT][WIDTH], char Next);
 int main( int argc, char* argv[] )
 {
 	//Initialize Variables
-	int i, j;
+	int i, j, WinningMoveCount;
+	WinningMoveCount = 0;
 
 	//Take in Input
 	char grid[HEIGHT][WIDTH], NextMove; 
@@ -39,7 +40,6 @@ int main( int argc, char* argv[] )
 	printf("Next Move: %c\n", NextMove);
 	PrintGrid(grid);	
 
-	printf("====\n");
 	for(i = 0; i < WIDTH; i++)
 	{
 		for(j = 0; j < HEIGHT; j++)
@@ -49,11 +49,19 @@ int main( int argc, char* argv[] )
 				grid[i][j] = NextMove;
 				if(CheckGrid(grid, NextMove))
 				{
+					printf("====\n");
 					PrintGrid(grid);
+					WinningMoveCount++;
 				}
 				grid[i][j] = '-';	
 			}	
 		}
+	}
+
+	if(WinningMoveCount == 0)
+	{
+		printf("====\n");
+		printf("No Winning Move!");
 	}
 
 	return 0;
