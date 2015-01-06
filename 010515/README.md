@@ -23,72 +23,71 @@ You will accept a number **N**. You will then accept **N** lines in the format:
 
     /path/of/link:/path/of/destination
 
-	Then you will accept a path of a directory to be fully expanded.
+Then you will accept a path of a directory to be fully expanded.
 
-	For example:
+For example:
 
-	    3
-		    /bin/thing:/bin/thing-3
-			    /bin/thing-3:/bin/thing-3.2
-				    /bin/thing-3.2/include:/usr/include
-					    /usr/include/SDL:/usr/local/include/SDL
-						    /bin/thing/include/SDL/stan
+    3
+    /bin/thing:/bin/thing-3
+    /bin/thing-3:/bin/thing-3.2
+    /bin/thing-3.2/include:/usr/include
+    /usr/include/SDL:/usr/local/include/SDL
+    /bin/thing/include/SDL/stan
 
-							## Output Description
+## Output Description
 
-							Expand it into its true form, for example:
+Expand it into its true form, for example:
 
-							   /usr/local/include/SDL/stan
+   /usr/local/include/SDL/stan
 
-							   # Sample Inputs and Outputs
+# Sample Inputs and Outputs
 
-							   ## Sample Input
+## Sample Input
 
-							       1
-								       /home/elite/documents:/media/mmcstick/docs
-									       /home/elite/documents/office
+    1
+    /home/elite/documents:/media/mmcstick/docs
+    /home/elite/documents/office
 
-										   ## Sample Output
+## Sample Output
 
-										       /media/mmcstick/documents/office
+    /media/mmcstick/documents/office
 
-											   ## Sample Input
+## Sample Input
 
-											       3
-												       /bin:/usr/bin
-													       /usr/bin:/usr/local/bin/
-														       /usr/local/bin/log:/var/log-2014
-															       /bin/log/rc
+    3
+    /bin:/usr/bin
+    /usr/bin:/usr/local/bin/
+    /usr/local/bin/log:/var/log-2014
+    /bin/log/rc
 
-																   ## Sample Output
+## Sample Output
 
-																       /var/log-2014/rc
+    /var/log-2014/rc
 
-																	   ## Sample Input
+## Sample Input
 
-																	       2
-																		       /etc:/tmp/etc
-																			       /tmp/etc/:/etc/
-																				       /etc/modprobe.d/config/
+    2
+    /etc:/tmp/etc
+    /tmp/etc/:/etc/
+    /etc/modprobe.d/config/
 
-																					   ## Sample Output
+## Sample Output
 
-																					   Program should hang - recursive loop.
+Program should hang - recursive loop.
 
-																					   (I know nested symlinks are restricted in practice, but we're livin' life on the edge in this subreddit.)
+(I know nested symlinks are restricted in practice, but we're livin' life on the edge in this subreddit.)
 
-																					   # Extension
+# Extension
 
-																					   Extend your solution to resolve existing symlinks in the definition of successive symlinks. For example:
+Extend your solution to resolve existing symlinks in the definition of successive symlinks. For example:
 
-																					       4
-																						       /bin/thing:/bin/thing-3
-																							       /bin/thing-3:/bin/thing-3.2
-																								       /bin/thing/include:/usr/include
-																									       /bin/thing-3.2/include/SDL:/usr/local/include/SDL
-																										       /bin/thing/include/SDL/stan
+    4
+    /bin/thing:/bin/thing-3
+    /bin/thing-3:/bin/thing-3.2
+    /bin/thing/include:/usr/include
+    /bin/thing-3.2/include/SDL:/usr/local/include/SDL
+    /bin/thing/include/SDL/stan
 
-																											   Notice how the 3rd link relies on the first and second symlinks, and the 4th link relies on the 3rd link working.
+Notice how the 3rd link relies on the first and second symlinks, and the 4th link relies on the 3rd link working.
 
-																											   This should resolve correctly into `/usr/local/include/SDL/stan`.
-
+This should resolve correctly into `/usr/local/include/SDL/stan`.
